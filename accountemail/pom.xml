@@ -7,6 +7,38 @@
     <artifactId>account-email</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- 添加除中央仓库的其它仓库-->
+    <repositories>
+        <repository>
+            <id>jboss</id>
+            <name>JBoss Repository</name>
+            <url>http://repository.jboss.com/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <!--<updatePolicy>daliy/never/always</updatePolicy>-->
+                <!--<checksumPolicy>ignore/warn/fail</checksumPolicy>-->
+            </snapshots>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+    <!-- 部署到远程仓库-->
+    <distributionManagement>
+        <repository>
+            <id>proj-releases</id>
+            <name>Proj</name>
+            <url>http://127.0.0.1/content/repositories/proj-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>proj-snapshots</id>
+            <name>Proj Snapshot Repository</name>
+            <url>http://127.0.0.1/content/repositories/proj-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <properties>
         <springframework.version>2.5.6</springframework.version>
     </properties>
