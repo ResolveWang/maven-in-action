@@ -12,6 +12,11 @@
   - provided: 编译和测试有效，但是运行时无效
   - runtime: 运行或者测试时有效，编译时无效
   - system: 该类依赖不通过maven仓库解析，而是与本机系统绑定，可能造成构建的不可移植性
+  
+3.maven主要的生命周期
+  - clean: 包括了`pre-clean`,`clean`和`post-clean`
+  - default: 包括了`validate`,`initialize`,`compile`...`test`,`install`等
+  - site: 包括了`pre-site`,`site`,`post-site`和`site-deploy`
 
 ### 常用命令
 1.mvn clean compile 编译项目主代码
@@ -30,7 +35,7 @@
 
 8.mvn archetype:generate 自动生成maven项目骨架
 
-9.mvn clean deploy 将项目构建部署到配置对应的远程仓库
+9.mvn clean deploy site-deploy 将项目构建部署到配置对应的远程仓库并将生成的项目站点发布到服务器
 
 
 ### 重要插件

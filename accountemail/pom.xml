@@ -88,10 +88,27 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <!-- 让compile和test兼容jdk1.5-->
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.1</version>
+                <executions>
+                    <!--定义一个id为attach-sources的任务，绑定到verify的
+                    生命周期上，执行maven-source-plugin的jar-no-fork目标-->
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
