@@ -12,6 +12,7 @@
     <name>Account Aggregator</name>
     <!-- 相对于该pom.xml的相对目录，一般聚合模块放在项目目录最顶层，其他模块作为聚合模块的子目录存在，这里不是好的实践 -->
     <modules>
+        <module>../account-parent</module>
         <module>../account-persist</module>
         <module>../accountemail</module>
     </modules>

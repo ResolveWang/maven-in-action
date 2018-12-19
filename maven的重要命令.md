@@ -40,3 +40,8 @@
 
 ### 重要插件
 1.`maven-shade-plugin`: maven打包插件，会将main方法的类信息写入到`manifest`中
+
+### 特性
+1.聚合，注意`packaging`的值和`module`路径
+
+2.继承，可继承的元素
