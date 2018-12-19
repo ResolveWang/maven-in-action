@@ -44,4 +44,13 @@
 ### 特性
 1.聚合，注意`packaging`的值和`module`路径
 
-2.继承，可继承的元素
+2.继承，可继承的元素，常见的如下
+  - groupId
+  - version
+  - description
+  - dependencies
+  - dependencyManagement
+  - build
+  - reporting
+  - properties
+  - url

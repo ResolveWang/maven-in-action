@@ -52,25 +52,24 @@
     </properties>
 
     <dependencies>
+        <!-- 通过parent的dependencyManagement，可以管理子模块的所有依赖的版本和scope
+         不引入的依赖，那么子模块就不会使用，但是父类dependencies中所有依赖子类都会引入
+         -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.mail</groupId>
@@ -80,8 +79,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.7</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.icegreen</groupId>
