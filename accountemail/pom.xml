@@ -3,9 +3,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.wpm.account</groupId>
+
+    <parent>
+        <groupId>com.wpm.account</groupId>
+        <artifactId>account-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../account-parent/pom.xml</relativePath>
+    </parent>
+
+
     <artifactId>account-email</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <name>Account Email</name>
 
     <!-- 添加除中央仓库的其它仓库-->
     <repositories>
