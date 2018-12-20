@@ -53,6 +53,8 @@
     </dependencies>
 
     <build>
+        <!--约定优于配置，因此一般使用maven默认约定-->
+        <sourceDirectory>src/main/java</sourceDirectory>
         <testResources>
             <testResource>
                 <directory>src/test/resources</directory>
