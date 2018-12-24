@@ -3,47 +3,42 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>com.wpm.account</groupId>
-        <artifactId>account-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath>../account-parent/pom.xml</relativePath>
-    </parent>
-
-
+    <groupId>com.wpm.account</groupId>
     <artifactId>account-email</artifactId>
-    <name>Account Email</name>
+    <version>1.0-SNAPSHOT</version>
 
-    <!-- 添加除中央仓库的其它仓库-->
+    <!-- 添加除中央仓库的其它仓库, 这里是自己使用nexus搭建的私服, central会代理下载中央仓库的依赖
+    可以在本地 settings.xml 的 profile 中配置仓库信息，这样就不必在项目的pom.xml中写以下内容了
+    -->
     <repositories>
         <repository>
-            <id>jboss</id>
-            <name>JBoss Repository</name>
-            <url>http://repository.jboss.com/maven2/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
             <snapshots>
-                <enabled>false</enabled>
-                <!--<updatePolicy>daliy/never/always</updatePolicy>-->
-                <!--<checksumPolicy>ignore/warn/fail</checksumPolicy>-->
+                <enabled>true</enabled>
             </snapshots>
-            <layout>default</layout>
+            <id>public</id>
+            <name>Public Repositories</name>
+            <url>http://192.168.1.20:8081/nexus/content/repositories/central/</url>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>Public Repositories</name>
+            <url>http://192.168.1.20:8081/nexus/content/repositories/central/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
-    <!-- 部署到远程仓库-->
+    <!-- 部署到远程仓库, 这里需要在本地 ~/.m2/settings.xml 中配置server的id、用户名和密码 -->
     <distributionManagement>
         <repository>
-            <id>proj-releases</id>
+            <id>releases</id>
             <name>Proj</name>
-            <url>http://127.0.0.1/content/repositories/proj-releases</url>
+            <url>http://192.168.1.20:8081/nexus/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
-            <id>proj-snapshots</id>
+            <id>snapshots</id>
             <name>Proj Snapshot Repository</name>
-            <url>http://127.0.0.1/content/repositories/proj-snapshots</url>
+            <url>http://192.168.1.20:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -52,24 +47,25 @@
     </properties>
 
     <dependencies>
-        <!-- 通过parent的dependencyManagement，可以管理子模块的所有依赖的版本和scope
-         不引入的依赖，那么子模块就不会使用，但是父类dependencies中所有依赖子类都会引入
-         -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.mail</groupId>
@@ -79,6 +75,8 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.7</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.icegreen</groupId>
@@ -100,9 +98,20 @@
                 </configuration>
             </plugin>
             <plugin>
-                <!--　继承父POM中的插件配置管理配置-->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.1</version>
+                <executions>
+                    <!--定义一个id为attach-sources的任务，绑定到verify的
+                    生命周期上，执行maven-source-plugin的jar-no-fork目标-->
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
