@@ -3,9 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.wpm.account</groupId>
+
+    <parent>
+        <groupId>com.wpm.account</groupId>
+        <artifactId>account-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../account-parent/pom.xml</relativePath>
+    </parent>
+
     <artifactId>account-persist</artifactId>
-    <version>1.0-SNAPSHOT</version>
+
 
     <properties>
         <springframework.version>2.5.6</springframework.version>
@@ -46,6 +53,8 @@
     </dependencies>
 
     <build>
+        <!--约定优于配置，因此一般使用maven默认约定-->
+        <sourceDirectory>src/main/java</sourceDirectory>
         <testResources>
             <testResource>
                 <directory>src/test/resources</directory>

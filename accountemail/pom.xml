@@ -7,35 +7,38 @@
     <artifactId>account-email</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!-- 添加除中央仓库的其它仓库-->
+    <!-- 添加除中央仓库的其它仓库, 这里是自己使用nexus搭建的私服, central会代理下载中央仓库的依赖
+    可以在本地 settings.xml 的 profile 中配置仓库信息，这样就不必在项目的pom.xml中写以下内容了
+    -->
     <repositories>
         <repository>
-            <id>jboss</id>
-            <name>JBoss Repository</name>
-            <url>http://repository.jboss.com/maven2/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
             <snapshots>
-                <enabled>false</enabled>
-                <!--<updatePolicy>daliy/never/always</updatePolicy>-->
-                <!--<checksumPolicy>ignore/warn/fail</checksumPolicy>-->
+                <enabled>true</enabled>
             </snapshots>
-            <layout>default</layout>
+            <id>public</id>
+            <name>Public Repositories</name>
+            <url>http://192.168.1.20:8081/nexus/content/repositories/central/</url>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>Public Repositories</name>
+            <url>http://192.168.1.20:8081/nexus/content/repositories/central/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
-    <!-- 部署到远程仓库-->
+    <!-- 部署到远程仓库, 这里需要在本地 ~/.m2/settings.xml 中配置server的id、用户名和密码 -->
     <distributionManagement>
         <repository>
-            <id>proj-releases</id>
+            <id>releases</id>
             <name>Proj</name>
-            <url>http://127.0.0.1/content/repositories/proj-releases</url>
+            <url>http://192.168.1.20:8081/nexus/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
-            <id>proj-snapshots</id>
+            <id>snapshots</id>
             <name>Proj Snapshot Repository</name>
-            <url>http://127.0.0.1/content/repositories/proj-snapshots</url>
+            <url>http://192.168.1.20:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
