@@ -45,6 +45,8 @@
 
 10.mvn clean install -pl account-email,account-persist 通过`-pl`命令指定构建某几个模块, `am`、`amd`和`rf`等参数也很重要
 
+11.mvn package -DskipTests 跳过测试
+
 ### 重要插件
 1.`maven-shade-plugin`: maven打包插件，会将main方法的类信息写入到`manifest`中
 
