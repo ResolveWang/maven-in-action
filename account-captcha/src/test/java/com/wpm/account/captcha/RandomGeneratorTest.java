@@ -1,11 +1,11 @@
 package com.wpm.account.captcha;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
+import static org.testng.Assert.assertFalse;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertFalse;
 
 public class RandomGeneratorTest {
     @Test

@@ -2,12 +2,12 @@
 
 package com.wpm.account.captcha;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -17,10 +17,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class AccountCaptchaServiceTest {
     private AccountCaptchaService service;
 
-    @Before
+    @BeforeMethod
     public void prepare() throws Exception{
         ApplicationContext ctx = new ClassPathXmlApplicationContext("account-captcha.xml");
         service = (AccountCaptchaService) ctx.getBean("accountCaptchaService");
