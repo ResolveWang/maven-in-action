@@ -28,6 +28,7 @@
 1.mvn clean compile 编译项目主代码
 
 2.mvn clean test 测试项目主代码
+  - `-Dtest=RandomGeneratorTest,AccountCaptchaServiceTest`: 只测试指定的用例，还可以用正则表达式，比如`Random*test`
 
 3.mvn clean package 打包项目主代码
 
@@ -45,8 +46,12 @@
 
 10.mvn clean install -pl account-email,account-persist 通过`-pl`命令指定构建某几个模块, `am`、`amd`和`rf`等参数也很重要
 
+11.mvn package -DskipTests 跳过测试
+
 ### 重要插件
 1.`maven-shade-plugin`: maven打包插件，会将main方法的类信息写入到`manifest`中
+
+2.`maven-jar-plugin`: 将主代码或测试类打包
 
 ### 特性
 1.聚合，注意`packaging`的值和`module`路径

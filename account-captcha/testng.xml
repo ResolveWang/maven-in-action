@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- testng中通过配置文件指定测试用例 -->
+<suite name="Suite1" verbose="1">
+    <test name="Regression1">
+        <classes>
+            <class name="com.wpm.account.captcha.AccountCaptchaServiceTest" />
+        </classes>
+    </test>
+</suite>

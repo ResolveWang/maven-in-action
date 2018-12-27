@@ -49,13 +49,13 @@
             </dependency>
 
             <!-- 导入其它的POM的dependencyManagement -->
-            <dependency>
-                <groupId>com.wpm.account</groupId>
-                <artifactId>account-parent2</artifactId>
-                <version>1.0-SNAPSHOT</version>
-                <type>1.0-SNAPSHOT</type>
-                <scope>import</scope>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.wpm.account</groupId>-->
+                <!--<artifactId>account-parent2</artifactId>-->
+                <!--<version>1.0-SNAPSHOT</version>-->
+                <!--<type>1.0-SNAPSHOT</type>-->
+                <!--<scope>import</scope>-->
+            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
 
