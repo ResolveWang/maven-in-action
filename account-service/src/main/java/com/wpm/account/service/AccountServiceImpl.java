@@ -64,7 +64,7 @@ public class AccountServiceImpl implements AccountService{
 
     private Map<String, String> activationMap = new HashMap<String, String>();
 
-    public void signup(SignUpRequest signUpRequest) throws AccountServiceException{
+    public void signUp(SignUpRequest signUpRequest) throws AccountServiceException{
         try{
             if(!signUpRequest.getPassword().equals(signUpRequest.getConfirmPassword())){
                 throw new AccountServiceException("2 passwords do not match");
@@ -94,6 +94,40 @@ public class AccountServiceImpl implements AccountService{
             throw new AccountServiceException("Unable to create account");
         }catch(AccountEmailException e){
             throw new AccountServiceException("Unable to send activation email");
+        }
+    }
+
+    public void activate(String activationId) throws AccountServiceException{
+        String accountId = activationMap.get(activationId);
+        if(accountId == null){
+            throw new AccountServiceException("Invalid account activation ID");
+        }
+
+        try{
+            Account account = accountPersistService.readAccount(accountId);
+            account.setActivated(true);
+            accountPersistService.updateAccount(account);
+        }catch (AccountPersistException e){
+            throw new AccountServiceException("Unable to activate account.");
+        }
+    }
+
+    public void login(String id, String password) throws AccountServiceException{
+        try{
+            Account accout = accountPersistService.readAccount(id);
+            if (accout == null){
+                throw new AccountServiceException("Account does not exist");
+            }
+
+            if(!accout.isActivated()){
+                throw new AccountServiceException("Account is disabled");
+            }
+
+            if(!accout.getPassword().equals(password)){
+                throw new AccountServiceException("Incorrect password");
+            }
+        }catch (AccountPersistException e){
+            throw new AccountServiceException("Unable to login");
         }
     }
 }
