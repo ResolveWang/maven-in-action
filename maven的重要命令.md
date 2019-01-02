@@ -44,9 +44,12 @@
 
 9.mvn clean deploy site-deploy 将项目构建部署到配置对应的远程仓库并将生成的项目站点发布到服务器
 
-10.mvn clean install -pl account-email,account-persist 通过`-pl`命令指定构建某几个模块, `am`、`amd`和`rf`等参数也很重要
+10.mvn clean install 
+  - -pl account-email,account-persist 通过`-pl`命令指定构建某几个模块, `am`、`amd`和`rf`等参数也很重要
+  - Pdev `-P`参数表示在命令行中激活一个`profile`,`dev`是该profile的id
 
 11.mvn package -DskipTests 跳过测试
+
 
 ### 重要插件
 1.`maven-shade-plugin`: maven打包插件，会将main方法的类信息写入到`manifest`中
@@ -66,3 +69,52 @@
   - reporting
   - properties
   - url
+
+3.内置特性
+  - 属性: 作用在于消除重复，通过${属性名}来引用。有六类属性：内置属性、POM属性、自定义属性、Settings属性、Java系统属性和环境变量属性
+    ```
+    <properties>
+    <springframework.version>2.5.6</springframework.version>
+    </properties>
+    ```
+  - 不同构建环境下使用不同profile,通过`-P`指定激活，也可以通过`settgings.xml`指定默认激活的`profile`。一般该配置放到`src/main/resources`目录下
+    ```
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <db.driver>com.mysql.jdbc.Driver</db.driver>
+                <db.url>jdbc.mysql://127.0.0.1:3306/test</db.url>
+                <db.username>dev</db.username>
+                <db.password>dev-pwd</password>
+            </properties>
+        </profile>
+    </profiles>
+    ```
+  - 在`src/main/resources`目录下的文件中，由于它不是`POM`，Maven解析`${db.usernmae}`需要使用maven-resources-plugin插件，在`POM`
+  中配置如下。同理，对`war`的`src/main/webapp/`等web文件过滤的方法，使用`maven-war-plugin`插件，方法类似下面的写法
+  ```
+  <resources>
+      <resource>
+          <directory>${porject.basedir}/src/main/resources</directory>
+          <filtering>true</filtering>
+      </resource>
+  </resources>
+  <testResources>
+      <testResource>
+          <directory>${porject.basedir}/src/main/resources</directory>
+          <filtering>true</filtering>
+      </testResource>
+  </testResources>
+  ```
+  - profile的激活方式。通过`mvn help:activate-profiles`可以查看当前激活的`profile`
+    - 命令行`-P`指定
+    - settings文件显示激活
+    - 系统属性激活
+    - 操作系统环境激活
+    - 文件存在与否激活
+    - 默认激活
+  - profile的种类和范围
+    - pom.xml: 对当前项目生效
+    - 用户目录下`.m2/settings.xml`: 对本机当前用户的所有Maven项目生效
+    - 全局settings.xml，即`Maven安装目录/conf/settings.xml`： 对本机所有Maven项目有效
