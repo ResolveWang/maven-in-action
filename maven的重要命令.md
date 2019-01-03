@@ -56,6 +56,20 @@
 
 2.`maven-jar-plugin`: 将主代码或测试类打包
 
+3.`maven-site-plugin`: 站点生成插件
+
+4.`maven-javadoc-plugin`: Java文档生成插件
+
+5.`maven-jxr-plugin`: 将源代码在网页中展现出来
+
+6.`maven-checkstyle-plugin`: 生成`CheckStyle`报告，还可以自定义编码风格规则。在聚合报告中需要同时在`build`和`reporting`中设置
+
+7.`maven-pmd-plugin`: 代码优化插件，还可以支持自定义分析规则。在聚合报告中只需要在`reporting`中设置
+
+8.`maven-changelog-plugin`: 基于版本控制系统生成就近的变更记录报告
+
+9.`cibertura-maven-plugin`: 生成测试覆盖率报告，目前不支持聚合报告
+
 ### 特性
 1.聚合，注意`packaging`的值和`module`路径
 

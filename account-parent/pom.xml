@@ -8,6 +8,40 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>Account Parent</name>
+    <url>http://rookiefly.cn</url>
+    <description>Maven实战学习</description>
+
+    <scm>
+        <connection>scm:git:https://github.com/ResolveWang/maven-in-action.git</connection>
+        <developerConnection>scm:git:https://github.com/ResolveWang</developerConnection>
+        <url>https://github.com/ResolveWang/maven-in-action.git</url>
+    </scm>
+
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>http://rookiefly.cn/maven-in-action</url>
+    </ciManagement>
+
+    <developers>
+        <developer>
+            <id>wpm</id>
+            <name>Wang PM</name>
+            <email>resolvewang@foxmail.com</email>
+            <timezone>8</timezone>
+        </developer>
+    </developers>
+
+    <issueManagement>
+        <system>JIRA</system>
+        <url>http://jira.wpm.com/maven-in-action</url>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
 
     <properties>
         <springframework.version>2.5.6</springframework.version>
