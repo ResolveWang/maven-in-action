@@ -50,6 +50,10 @@
 
 11.mvn package -DskipTests 跳过测试
 
+12.mvn help:effective-pom: 查看当前目录下的POM的所有信息，包括隐式继承的超级POM的信息
+
+13.mvn dependency:sources: 下载依赖源码
+
 
 ### 重要插件
 1.`maven-shade-plugin`: maven打包插件，会将main方法的类信息写入到`manifest`中
