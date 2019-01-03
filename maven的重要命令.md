@@ -56,7 +56,7 @@
 
 2.`maven-jar-plugin`: 将主代码或测试类打包
 
-3.`maven-site-plugin`: 站点生成插件
+3.`maven-site-plugin`: 站点生成插件，同时支持`DAV`、`FTP`、`SCP`等协议进行站点部署
 
 4.`maven-javadoc-plugin`: Java文档生成插件
 
@@ -69,6 +69,7 @@
 8.`maven-changelog-plugin`: 基于版本控制系统生成就近的变更记录报告
 
 9.`cibertura-maven-plugin`: 生成测试覆盖率报告，目前不支持聚合报告
+
 
 ### 特性
 1.聚合，注意`packaging`的值和`module`路径
